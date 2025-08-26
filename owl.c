@@ -14,6 +14,7 @@
  */
 
 #include "phasespace_c_types.h"
+#include "phsp.h"
 
 #include <arpa/inet.h>
 #include <assert.h>

@@ -21,6 +21,8 @@
 #include <unistd.h>
 
 #include "phasespace_c_types.h"
+#include "phsp.h"
+#include "owl.h"
 
 
 /* --- Function phsp_log_start (async version) -------------------------- */

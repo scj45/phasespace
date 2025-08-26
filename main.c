@@ -21,7 +21,7 @@
 
 #include "phasespace_c_types.h"
 #include "ports.c"  
-
+#include "phsp.h"
 struct phasespace_server_s *server;
 struct phasespace_log_s *log = NULL;
 struct phasespace_bodies frame;

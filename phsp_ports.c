@@ -21,7 +21,7 @@
 #include "acphasespace.h"
 #include "phasespace_c_types.h"
 #include "owl.h"
-
+#include "phsp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

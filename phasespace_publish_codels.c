@@ -17,6 +17,8 @@
 #include <poll.h>
 
 #include "phasespace_c_types.h"
+#include "phsp.h"
+#include "owl.h"
 
 
 /* --- Task publish ----------------------------------------------------- */
