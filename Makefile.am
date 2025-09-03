@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2025 UCL
+# Copyright (c) 2015-2025 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -12,33 +12,37 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
+#					Anthony Mallet on Fri Feb 13 2015
+#
+
 lib_LTLIBRARIES =
 
-# phasespace codels library
-lib_LTLIBRARIES += libphasespace_codels.la
+# rotorcraft codels library
+lib_LTLIBRARIES += librotorcraft_codels.la
 
-libphasespace_codels_la_SOURCES  =	phasespace_c_types.h
-libphasespace_codels_la_SOURCES +=	phsp.h
-libphasespace_codels_la_SOURCES +=	phasespace_codels.c
-libphasespace_codels_la_SOURCES +=	phasespace_publish_codels.c
-libphasespace_codels_la_SOURCES +=	phsp_ports.c
+librotorcraft_codels_la_SOURCES  =	rotorcraft_c_types.h
+librotorcraft_codels_la_SOURCES  = rotor_speed.c
+librotorcraft_codels_la_SOURCES +=	rotorcraft_codels.c
+librotorcraft_codels_la_SOURCES +=	rotorcraft_main_codels.c
+librotorcraft_codels_la_SOURCES +=	rotorcraft_comm_codels.c
+librotorcraft_codels_la_SOURCES +=	tty.c
+librotorcraft_codels_la_SOURCES +=	calibration.cc
+librotorcraft_codels_la_SOURCES +=	codels.h
 
-libphasespace_codels_la_SOURCES +=	owl.c
-libphasespace_codels_la_SOURCES +=	owl.h
+librotorcraft_codels_la_CPPFLAGS =	$(requires_CFLAGS)
+librotorcraft_codels_la_LIBADD   =	$(requires_LIBS)
+librotorcraft_codels_la_CPPFLAGS+=	$(codels_requires_CFLAGS)
+librotorcraft_codels_la_LIBADD  +=	$(codels_requires_LIBS)
+librotorcraft_codels_la_LDFLAGS  =	-release $(PACKAGE_VERSION)
 
-libphasespace_codels_la_CPPFLAGS =	$(requires_CFLAGS)
-libphasespace_codels_la_LIBADD   =	$(requires_LIBS)
-libphasespace_codels_la_CPPFLAGS+=	$(codels_requires_CFLAGS)
-libphasespace_codels_la_LIBADD  +=	$(codels_requires_LIBS)
-libphasespace_codels_la_LDFLAGS  =	-release $(PACKAGE_VERSION)
-
+librotorcraft_codels_la_CPPFLAGS+=	$(libudev_CFLAGS)
+librotorcraft_codels_la_LIBADD  +=	$(libudev_LIBS)
 
 # idl mappings
-BUILT_SOURCES=	phasespace_c_types.h
+BUILT_SOURCES=	rotorcraft_c_types.h
 CLEANFILES=	${BUILT_SOURCES}
-
-phasespace_c_types.h: ${top_srcdir}/phasespace.gen
+rotorcraft_c_types.h: ${top_srcdir}/rotorcraft.gen
 	${GENOM3}  mappings \
 	  -MD -MF .deps/$@.d -MT $@ --signature -l c $< >$@
 
--include .deps/phasespace_c_types.h.d
+-include .deps/rotorcraft_c_types.h.d
